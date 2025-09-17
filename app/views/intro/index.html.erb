@@ -1,0 +1,22 @@
+<div class="relative w-full h-screen overflow-hidden" data-controller="video-background intro">
+  <video
+    data-video-background-target="video"
+    id="background-video"
+    class="absolute top-0 left-0 w-full h-full object-cover z-0"
+    autoplay
+    muted
+    loop
+  >
+  <source src="<%= asset_path('background-video.mp4') %>" type="video/mp4">
+    お使いのブラウザは動画をサポートしていません。
+  </video>
+
+  <!-- メインコンテンツ -->
+  <div data-intro-target="content" class="relative z-10">
+    <%= render partial: 'step1', locals: {
+      show_navigation: true,
+      current_step: 1,
+      total_steps: 3
+    } %>
+  </div>
+</div>
