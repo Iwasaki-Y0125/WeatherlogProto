@@ -6,3 +6,9 @@ import { application } from "./application"
 
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
+
+import IntroController from "./intro_controller"
+application.register("intro", IntroController)
+
+import VideoBackgroundController from "./video_background_controller"
+application.register("video-background", VideoBackgroundController)
