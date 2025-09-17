@@ -1,0 +1,37 @@
+<div class="relative w-full h-screen overflow-hidden" data-controller="video-background">
+  <video
+    data-video-background-target="video"
+    id="background-video"
+    class="absolute top-0 left-0 w-full h-full object-cover z-0"
+    autoplay
+    muted
+    loop
+  >
+  <source src="<%= asset_path('background-video.mp4') %>" type="video/mp4">
+    お使いのブラウザは動画をサポートしていません。
+  </video>
+  <div class="flex items-center justify-center h-full">
+    <div class="flex flex-col items-center gap-8 opacity-80">
+    <!-- ロゴ部分 -->
+    <div class="size-72">
+      <%= image_tag 'applogo.png' %>
+    </div>
+    <!-- アプリ説明部分 -->
+    <div class="bg-neutral-200 py-12 w-screen -mx-4">
+      <div class="font-serif text-lg space-y-1 text-center text-red-950">
+        <p>天気と体調のゆらぎを記録</p>
+        <p>あなたの体調パターンを</p>
+        <p>見える化するアプリです</p>
+      </div>
+    </div>
+    <!-- ログイン部分 -->
+    <div class="flex flex-col items-center gap-4 bg-neutral-200 hover:bg-amber-600 rounded-full py-6 px-7">
+      <div class="decoration-solid decoration-0 underline underline-offset-4 break-words">
+        <%= link_to '#', class: "text-center text-red-950 font-serif" do %>
+        <span class="block">既にアカウントがある方</span>
+        <span class="block">ログインはこちら</span>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
