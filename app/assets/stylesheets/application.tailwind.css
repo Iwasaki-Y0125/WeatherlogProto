@@ -20,3 +20,8 @@
     max-width: 100%;
   }
 }
+
+.intro-image {
+  width: 200px;
+  object-fit: cover; /* 画像の縦横比を保持 */
+}
