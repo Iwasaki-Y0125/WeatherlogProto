@@ -4,9 +4,13 @@ class ApplicationController < ActionController::Base
   # CSRF対策（Rails標準）
   protect_from_forgery with: :exception
   # セッションタイムアウトの設定
-  before_action :check_session_timeout
+  before_action :check_session_timeout, :require_login
 
   private
+
+  def not_authenticated
+    redirect_to login_path
+  end
 
   def check_session_timeout
     return unless current_user
