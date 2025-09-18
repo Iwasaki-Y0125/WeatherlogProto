@@ -15,4 +15,6 @@ class IntroController < ApplicationController
       head :not_found
     end
   end
+
+  def user_agreement; end
 end

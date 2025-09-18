@@ -15,4 +15,5 @@ Rails.application.routes.draw do
 
   get "intro", to: "intro#index"
   get "intro/step/:step", to: "intro#step"
+  get "intro/user_agreement", to: "intro#user_agreement"
 end

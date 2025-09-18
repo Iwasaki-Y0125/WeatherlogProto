@@ -4,6 +4,9 @@
 
 import { application } from "./application"
 
+import AgreeCheckboxController from "./agree_checkbox_controller"
+application.register("agree-checkbox", AgreeCheckboxController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 

@@ -1,0 +1,64 @@
+<div class="bg-neutral-400 relative w-full h-screen overflow-hidden" data-controller="agree-checkbox">
+  <h2 class="text-gray-700 text-sm mt-10 mb-3 ms-6">利用規約/健康情報の取り扱い方針について</h2>
+  <!-- スクロール可能な利用規約ボックス -->
+  <div class="h-80 mx-5 overflow-y-auto border border-gray-300 p-4 bg-gray-50 rounded-lg mb-6 scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200">
+    <div class="space-y-6">
+      <div>
+        <h3 class="text-lg font-semibold mb-3 text-gray-800">1. サービスの位置づけ</h3>
+        <div class="space-y-2 text-sm text-gray-700 leading-relaxed">
+          <p>このアプリは学習目的で開発されたプロトタイプです。</p>
+          <p>公開期間は<strong class="font-semibold text-red-600">2025年9月21日〜2025年11月30日までの約3ヶ月間</strong>です。</p>
+          <p>期間終了後は、すべてのデータが削除されます。</p>
+        </div>
+      </div>
+
+      <div>
+        <h3 class="text-lg font-semibold mb-3 text-gray-800">2. データの取り扱い</h3>
+        <div class="space-y-2 text-sm text-gray-700 leading-relaxed">
+          <p>登録された内容はクラウド上のデータベースに保存されます。安全性には配慮していますが、完全な保証はできかねます。</p>
+          <p>個人情報（本名・住所・電話番号など）の入力は控えてご利用ください。</p>
+        </div>
+      </div>
+
+      <div>
+        <h3 class="text-lg font-semibold mb-3 text-gray-800">3. サポート・動作保証</h3>
+        <div class="space-y-2 text-sm text-gray-700 leading-relaxed">
+          <p>本アプリは学習用の試作品です。</p>
+          <p>一部動作が不安定な場合がありますが、ご了承ください。不具合や改善のご意見は、フィードバックいただけると大変助かります。</p>
+        </div>
+      </div>
+
+      <div>
+        <h3 class="text-lg font-semibold mb-3 text-gray-800">4. 今後について</h3>
+        <div class="space-y-2 text-sm text-gray-700 leading-relaxed">
+          <p>本アプリは将来的にスマホアプリ化を検討しています。</p>
+          <p>プロト版の利用状況やフィードバックは、今後の改善の参考にさせていただきます。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 同意セクション -->
+  <div class="flex flex-col items-center space-y-6">
+    <div class="flex items-center justify-center">
+      <label class="flex items-center space-x-3 cursor-pointer">
+        <input type="checkbox"
+               data-agree-checkbox-target="checkbox"
+               data-action="change->agree-checkbox#toggleSubmit"
+               class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2">
+        <span class="text-gray-700">上記の利用規約に同意します</span>
+      </label>
+    </div>
+
+    <div class="w-full max-w-xs">
+      <%= link_to '#',
+                  data: { agree_checkbox_target: "submitButton" },
+                  class: "w-full py-3 px-4 text-white rounded-lg font-medium
+                          focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
+                          transition-colors duration-200 text-center inline-block
+                          pointer-events-none bg-gray-300" do %>
+        ユーザー登録へ進む
+      <% end %>
+    </div>
+  </div>
+</div>
