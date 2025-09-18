@@ -10,7 +10,7 @@ class User < ApplicationRecord
             format: { with: /\A\d{7}\z/, message: "は7桁の数字で入力してください" },
             length: { is: 7 }
 
-  has_many :diary :symptom, dependent: :destroy
+  has_many :diary, dependent: :destroy
   has_many :symptoms, dependent: :destroy
   has_many :symptom_diaries, through: :symptom, source: :diaries
 end
