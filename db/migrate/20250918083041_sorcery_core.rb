@@ -7,7 +7,7 @@ class SorceryCore < ActiveRecord::Migration[7.0]
 
       t.string :postalcode, limit: 7, null: false
 
-      t.timestamps                null: false
+      t.timestamps null: false
     end
   end
 end
