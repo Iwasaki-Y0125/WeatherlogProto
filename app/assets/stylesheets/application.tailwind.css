@@ -2,12 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
-/*
-
-@layer components {
-  .btn-primary {
-    @apply py-2 px-4 bg-blue-200;
-  }
+.smartphone-container {
+  width: 100%;
+  max-width: 375px;
+  height: 667px;
+  background-color: white;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
-*/
+/* レスポンシブ対応 */
+@media (max-width: 640px) {
+  .smartphone-container {
+    height: 100vh;
+    max-width: 100%;
+  }
+}

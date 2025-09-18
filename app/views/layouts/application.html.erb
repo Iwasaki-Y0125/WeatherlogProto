@@ -17,9 +17,9 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
   </head>
-
-  <body class="bg-gray-500 min-h-screen">
-    <div class="max-w-sm mx-auto bg-white min-h-screen shadow-lg">
+  <!-- 本体表示 -->
+  <body class="bg-gray-500 h-screen flex justify-center items-center">
+    <div class="smartphone-container">
       <%= yield %>
     </div>
   </body>
