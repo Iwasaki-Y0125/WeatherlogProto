@@ -13,6 +13,6 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "intro#index"
 
-  get 'intro', to: 'intro#index'
-  get 'intro/step/:step', to: 'intro#step'
+  get "intro", to: "intro#index"
+  get "intro/step/:step", to: "intro#step"
 end
