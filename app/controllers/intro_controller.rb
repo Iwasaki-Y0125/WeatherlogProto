@@ -6,11 +6,11 @@ class IntroController < ApplicationController
 
     case @step
     when 1
-      render partial: 'step1'
+      render partial: "step1"
     when 2
-      render partial: 'step2'  
+      render partial: "step2"
     when 3
-      render partial: 'step3'
+      render partial: "step3"
     else
       head :not_found
     end
