@@ -13,5 +13,8 @@ application.register("hello", HelloController)
 import IntroController from "./intro_controller"
 application.register("intro", IntroController)
 
+import UserSymptomsController from "./user_symptoms_controller"
+application.register("user-symptoms", UserSymptomsController)
+
 import VideoBackgroundController from "./video_background_controller"
 application.register("video-background", VideoBackgroundController)
