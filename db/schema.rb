@@ -10,40 +10,87 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_09_18_161640) do
+ActiveRecord::Schema[7.2].define(version: 2025_09_19_161521) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "diaries", force: :cascade do |t|
-    t.integer "symptom_level", null: false
-    t.string "oneline_diary"
-    t.bigint "user_id"
+    t.bigint "user_id", null: false
+    t.bigint "weather_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_diaries_on_user_id"
+    t.index ["weather_id"], name: "index_diaries_on_weather_id"
+  end
+
+  create_table "diary_symptoms", force: :cascade do |t|
+    t.bigint "diary_id", null: false
+    t.bigint "symptom_id", null: false
+    t.integer "symptom_level", null: false
+    t.string "oneline_diary"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["diary_id"], name: "index_diary_symptoms_on_diary_id"
+    t.index ["symptom_id"], name: "index_diary_symptoms_on_symptom_id"
   end
 
   create_table "symptoms", force: :cascade do |t|
-    t.integer "symptom", null: false
-    t.bigint "user_id"
-    t.bigint "diaries_id"
+    t.string "name"
+    t.string "display_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["diaries_id"], name: "index_symptoms_on_diaries_id"
-    t.index ["user_id"], name: "index_symptoms_on_user_id"
+  end
+
+  create_table "user_symptoms", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "symptom_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["symptom_id"], name: "index_user_symptoms_on_symptom_id"
+    t.index ["user_id"], name: "index_user_symptoms_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
     t.string "crypted_password"
     t.string "salt"
-    t.string "postalcode", limit: 7, null: false
+    t.string "postal_code", limit: 7, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "latitude", precision: 10, scale: 7
+    t.decimal "longitude", precision: 10, scale: 7
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["latitude", "longitude"], name: "index_users_on_location"
+  end
+
+  create_table "weather_predictions", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "condition", null: false
+    t.decimal "temperature", precision: 5, scale: 2
+    t.decimal "humidity", precision: 5, scale: 2
+    t.decimal "pressure", precision: 7, scale: 2
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_weather_predictions_on_user_id"
+  end
+
+  create_table "weathers", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "condition", null: false
+    t.decimal "temperature", precision: 5, scale: 2
+    t.decimal "humidity", precision: 5, scale: 2
+    t.decimal "pressure", precision: 7, scale: 2
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_weathers_on_user_id"
   end
 
   add_foreign_key "diaries", "users"
-  add_foreign_key "symptoms", "diaries", column: "diaries_id"
-  add_foreign_key "symptoms", "users"
+  add_foreign_key "diaries", "weathers"
+  add_foreign_key "diary_symptoms", "diaries"
+  add_foreign_key "diary_symptoms", "symptoms"
+  add_foreign_key "user_symptoms", "symptoms"
+  add_foreign_key "user_symptoms", "users"
+  add_foreign_key "weather_predictions", "users"
+  add_foreign_key "weathers", "users"
 end
