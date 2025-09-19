@@ -4,16 +4,17 @@ class ApplicationController < ActionController::Base
   # CSRF対策（Rails標準）
   protect_from_forgery with: :exception
   # セッションタイムアウトの設定
-  before_action :check_session_timeout, :require_login unless Rails.env.development? && params[:skip_auth]
+  before_action :check_session_timeout, :require_login
 
   private
 
+  #認証機能をチェックするときはコメントアウトすること
+  def check_authentication
+    return if Rails.env.development? && params[:skip_auth]
+    require_login
+  end
+
   def not_authenticated
-    Rails.logger.debug "=== DEBUG INFO ==="
-    Rails.logger.debug "Session: #{session.to_hash}"
-    Rails.logger.debug "Current user: #{current_user}"
-    Rails.logger.debug "Controller: #{controller_name}##{action_name}"
-    Rails.logger.debug "=================="
     redirect_to login_path
   end
 
