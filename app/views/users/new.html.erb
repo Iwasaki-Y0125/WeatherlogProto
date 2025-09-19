@@ -1,3 +1,113 @@
-<div class="bg-neutral-400 relative w-full h-screen overflow-hidden" data-controller="agree-checkbox">
-  <h1>ユーザー登録</h1>
+<div class="bg-neutral-300 relative w-full h-screen overflow-hidden">
+  <div class="px-8">
+    <h1 class="text-gray-700 font-serif font-medium mt-8">ユーザー登録</h1>
+    <%= form_with model: @user, local: true, class: "space-y-6" do |f| %>
+
+      <!-- 気象病選択 -->
+      <div data-controller="user-symptoms">
+        <label class="block text-sm text-gray-700 font-serif mb-1">
+          お悩みの気象病を選択してください
+        </label>
+        <p class="text-xs text-gray-700 font-serif mb-1">*複数選択可</p>
+
+        <div class="grid grid-cols-2 gap-1">
+          <button type="button"
+                  data-user-symptoms-target="button"
+                  data-action="click->user-symptoms#toggleSymptom"
+                  class="text-white bg-gray-500 hover:bg-red-800 text-gray-700 py-2 px-4 rounded transition-colors duration-200"
+                  data-symptom="mood">
+            気分
+          </button>
+          <button type="button"
+                  data-user-symptoms-target="button"
+                  data-action="click->user-symptoms#toggleSymptom"
+                  class="text-white bg-gray-500 hover:bg-red-800 text-gray-700 py-2 px-4 rounded transition-colors duration-200"
+                  data-symptom="headache">
+            頭痛
+          </button>
+          <button type="button"
+                  data-user-symptoms-target="button"
+                  data-action="click->user-symptoms#toggleSymptom"
+                  class="text-white bg-gray-500 hover:bg-red-800 text-gray-700 py-2 px-4 rounded transition-colors duration-200"
+                  data-symptom="sleep">
+            睡眠
+          </button>
+          <button type="button"
+                  data-user-symptoms-target="button"
+                  data-action="click->user-symptoms#toggleSymptom"
+                  class="text-white bg-gray-500 hover:bg-red-800 text-gray-700 py-2 px-4 rounded transition-colors duration-200"
+                  data-symptom="joint_pain">
+            関節痛
+          </button>
+        </div>
+          <!-- 隠しフィールドで選択された症状を送信 -->
+          <%= f.hidden_field :user_symptoms,
+                            data: {
+                              "user-symptoms-target": "hiddenField"
+                            } %>
+      </div>
+
+
+      <!-- 郵便番号 -->
+      <div class="flex items-start gap-10">
+        <!-- ラベル部分 -->
+        <div class="flex-shrink-0 w-28">
+          <label class="block text-sm text-gray-700 font-serif mb-1">
+            郵便番号
+          </label>
+          <p class="text-xs text-gray-700 mb-0">*気象情報取得用</p>
+          <p class="text-xs text-gray-700 mt-0">*半角/ハイフンなし</p>
+        </div>
+
+        <!-- 入力フィールド部分 -->
+        <div class="flex-1">
+          <div class="flex items-center">
+            <span class="text-gray-700 mr-2">〒</span>
+            <%= f.text_field :postal_code,
+                            class: "w-32 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 text-gray-700",
+                            placeholder: "1234567",
+                            maxlength: "7" %>
+          </div>
+        </div>
+      </div>
+
+        <!-- メールアドレス -->
+      <div>
+          <label class="block text-sm text-gray-700 font-serif mb-1">
+            メールアドレス
+          </label>
+          <p class="text-xs text-gray-700 mb-2">*ログイン時に使用</p>
+
+          <%= f.email_field :email,
+                            class: "w-full max-w-sm px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 text-gray-700",
+                            placeholder: "example@email.com" %>
+      </div>
+
+      <!-- パスワード -->
+      <div class="space-y-2">
+        <div>
+          <label class="block text-sm text-gray-700 font-serif mb-1">
+            パスワード
+          </label>
+          <p class="text-xs text-gray-700 mb-2">*ログイン時に使用</p>
+
+          <%= f.password_field :password,
+                              class: "w-full max-w-sm px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 text-gray-700",
+                              placeholder: "パスワードを入力" %>
+        </div>
+
+        <div>
+          <%= f.password_field :password_confirmation,
+                              class: "w-full max-w-sm px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 text-gray-700",
+                              placeholder: "再入力" %>
+        </div>
+      </div>
+
+      <!-- 登録ボタン -->
+      <div class="text-center">
+        <%= f.submit "登録",
+                    class: "w-40 bg-gray-500 hover:bg-red-800 text-white py-3 px-4 rounded-md transition-colors duration-200 cursor-pointer" %>
+      </div>
+    <% end %>
+  </div>
 </div>
