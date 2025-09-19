@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
 
   private
 
-  #認証機能をチェックするときはコメントアウトすること
+  # 認証機能をチェックするときはコメントアウトすること
   def check_authentication
     return if Rails.env.development? && params[:skip_auth]
     require_login
