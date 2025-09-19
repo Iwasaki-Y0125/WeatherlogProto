@@ -60,4 +60,4 @@ gem "tailwindcss-rails"
 gem "tailwindcss-ruby", "3.4.17"
 
 # 認証機能
-gem "sorcery", "0.16.3"
+gem "sorcery", "0.17.0"
