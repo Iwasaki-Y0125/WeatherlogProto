@@ -1,8 +1,9 @@
 <div class="bg-neutral-300 relative w-full h-screen overflow-hidden">
   <div class="px-8">
+
     <h1 class="text-lg text-gray-700 font-serif font-medium mt-8">ユーザー登録</h1>
     <%= form_with model: @user, local: true, class: "space-y-6" do |f| %>
-
+    <%= render 'layouts/error_messages', object: f.object %>
     <!-- 気象病選択セクション -->
     <div data-controller="user-symptoms">
       <label class="block text-sm text-gray-700 font-serif mb-1">
