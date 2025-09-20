@@ -7,7 +7,7 @@ class User < ApplicationRecord
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :email, uniqueness: true, presence: true
   validates :postal_code, presence: true,
-            format: { with: /\A\d{7}\z/, message: "は7桁の数字で入力してください" },
+            format: { with: /\A\d{7}\z/ },
             length: { is: 7 }
 
   has_many :user_symptoms, dependent: :destroy
