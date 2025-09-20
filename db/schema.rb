@@ -16,7 +16,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_09_19_161521) do
 
   create_table "diaries", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.bigint "weather_id", null: false
+    t.bigint "weather_id"
     t.integer "symptom_level", null: false
     t.string "oneline_diary"
     t.datetime "created_at", null: false
