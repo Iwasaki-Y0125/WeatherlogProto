@@ -1,8 +1,15 @@
 class Diary < ApplicationRecord
-  belongs_to :user
-  belongs_to :weather
-  has_many :diary_symptoms, dependent: :destroy
-  has_many :symptoms, through: :diary_symptoms
+  # 症状レベルのenum
+  enum symptom_level: {
+    very_mild: 1,
+    mild: 2,
+    moderate: 3,
+    somewhat_severe: 4,
+    severe: 5,
+    very_severe: 6
+  }
 
-  accepts_nested_attributes_for :diary_symptoms, allow_destroy: true
+  # バリデーション
+  validates :symptom_level, inclusion: { in: 1..6 }
+  validates :oneline_diary, length: { maximum: 100}, allow_blank: true
 end
