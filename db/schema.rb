@@ -35,8 +35,8 @@ ActiveRecord::Schema[7.2].define(version: 2025_09_19_161521) do
   end
 
   create_table "symptoms", force: :cascade do |t|
-    t.string "name"
-    t.string "display_name"
+    t.string "name", null: false
+    t.string "display_name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

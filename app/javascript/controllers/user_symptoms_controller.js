@@ -1,31 +1,51 @@
 import { Controller } from "@hotwired/stimulus"
 
-// Connects to data-controller="user-symptoms"
 export default class extends Controller {
-  static targets = ["button", "hiddenField"]
-  static values = { selectedSymptoms: Array }
+  static targets = ["button", "hiddenContainer"]
 
   connect() {
-    this.selectedSymptomsValue = []
+    this.selectedSymptoms = new Set()
   }
 
   toggleSymptom(event) {
     const button = event.currentTarget
-    const symptom = button.dataset.symptom
+    const symptomId = button.dataset.symptomId
+    const symptomName = button.dataset.symptomName
 
-    if (this.selectedSymptomsValue.includes(symptom)) {
+    if (this.selectedSymptoms.has(symptomId)) {
       // 選択解除
-      this.selectedSymptomsValue = this.selectedSymptomsValue.filter(s => s !== symptom)
-      button.classList.remove('bg-red-950')
-      button.classList.add('bg-gray-300')
+      this.selectedSymptoms.delete(symptomId)
+      button.classList.remove("bg-red-900")
+      button.classList.add("bg-gray-500")
+      this.removeHiddenField(symptomId)
     } else {
       // 選択
-      this.selectedSymptomsValue = [...this.selectedSymptomsValue, symptom]
-      button.classList.remove('bg-gray-300')
-      button.classList.add('bg-red-950')
+      this.selectedSymptoms.add(symptomId)
+      button.classList.remove("bg-gray-500")
+      button.classList.add("bg-red-900")
+      this.addHiddenField(symptomId)
     }
+  }
 
-    // 隠しフィールドに選択された症状を設定
-    this.hiddenFieldTarget.value = this.selectedSymptomsValue.join(',')
+  addHiddenField(symptomId) {
+    const container = this.hiddenContainerTarget
+    const index = container.children.length
+
+    // user_symptoms_attributes用の隠しフィールドを作成
+    const hiddenDiv = document.createElement('div')
+    hiddenDiv.dataset.symptomId = symptomId
+    hiddenDiv.innerHTML = `
+      <input type="hidden" name="user[user_symptoms_attributes][${index}][symptom_id]" value="${symptomId}">
+    `
+
+    container.appendChild(hiddenDiv)
+  }
+
+  removeHiddenField(symptomId) {
+    const container = this.hiddenContainerTarget
+    const targetDiv = container.querySelector(`div[data-symptom-id="${symptomId}"]`)
+    if (targetDiv) {
+      container.removeChild(targetDiv)
+    }
   }
 }
