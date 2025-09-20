@@ -3,49 +3,31 @@
     <h1 class="text-lg text-gray-700 font-serif font-medium mt-8">ユーザー登録</h1>
     <%= form_with model: @user, local: true, class: "space-y-6" do |f| %>
 
-      <!-- 気象病選択 -->
-      <div data-controller="user-symptoms">
-        <label class="block text-sm text-gray-700 font-serif mb-1">
-          お悩みの気象病を選択してください
-        </label>
-        <p class="text-xs text-gray-700 font-serif mb-1">*複数選択可</p>
+    <!-- 気象病選択セクション -->
+    <div data-controller="user-symptoms">
+      <label class="block text-sm text-gray-700 font-serif mb-1">
+        お悩みの気象病を選択してください
+      </label>
+      <p class="text-xs text-gray-700 font-serif mb-1">*複数選択可</p>
 
-        <div class="grid grid-cols-2 gap-1">
+      <div class="grid grid-cols-2 gap-1">
+        <% Symptom.all.each do |symptom| %>
           <button type="button"
                   data-user-symptoms-target="button"
                   data-action="click->user-symptoms#toggleSymptom"
                   class="text-white bg-gray-500 hover:bg-red-800 text-gray-700 py-2 px-4 rounded transition-colors duration-200"
-                  data-symptom="mood">
-            気分
+                  data-symptom-id="<%= symptom.id %>"
+                  data-symptom-name="<%= symptom.name %>">
+            <%= symptom.display_name %>
           </button>
-          <button type="button"
-                  data-user-symptoms-target="button"
-                  data-action="click->user-symptoms#toggleSymptom"
-                  class="text-white bg-gray-500 hover:bg-red-800 text-gray-700 py-2 px-4 rounded transition-colors duration-200"
-                  data-symptom="headache">
-            頭痛
-          </button>
-          <button type="button"
-                  data-user-symptoms-target="button"
-                  data-action="click->user-symptoms#toggleSymptom"
-                  class="text-white bg-gray-500 hover:bg-red-800 text-gray-700 py-2 px-4 rounded transition-colors duration-200"
-                  data-symptom="sleep">
-            睡眠
-          </button>
-          <button type="button"
-                  data-user-symptoms-target="button"
-                  data-action="click->user-symptoms#toggleSymptom"
-                  class="text-white bg-gray-500 hover:bg-red-800 text-gray-700 py-2 px-4 rounded transition-colors duration-200"
-                  data-symptom="joint_pain">
-            関節痛
-          </button>
-        </div>
-          <!-- 隠しフィールドで選択された症状を送信 -->
-          <%= f.hidden_field :user_symptoms,
-                            data: {
-                              "user-symptoms-target": "hiddenField"
-                            } %>
+        <% end %>
       </div>
+
+      <!-- accepts_nested_attributes_for用の隠しフィールド -->
+      <div data-user-symptoms-target="hiddenContainer">
+        <!-- Stimulusで動的に生成される隠しフィールドがここに入る -->
+      </div>
+    </div>
 
 
       <!-- 郵便番号 -->
