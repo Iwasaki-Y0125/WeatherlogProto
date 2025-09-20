@@ -16,38 +16,13 @@ ActiveRecord::Schema[7.2].define(version: 2025_09_19_161521) do
 
   create_table "diaries", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.bigint "weather_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_diaries_on_user_id"
-    t.index ["weather_id"], name: "index_diaries_on_weather_id"
-  end
-
-  create_table "diary_symptoms", force: :cascade do |t|
-    t.bigint "diary_id", null: false
-    t.bigint "symptom_id", null: false
+    t.bigint "weather_id"
     t.integer "symptom_level", null: false
     t.string "oneline_diary"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["diary_id"], name: "index_diary_symptoms_on_diary_id"
-    t.index ["symptom_id"], name: "index_diary_symptoms_on_symptom_id"
-  end
-
-  create_table "symptoms", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "display_name", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "user_symptoms", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "symptom_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["symptom_id"], name: "index_user_symptoms_on_symptom_id"
-    t.index ["user_id"], name: "index_user_symptoms_on_user_id"
+    t.index ["user_id"], name: "index_diaries_on_user_id"
+    t.index ["weather_id"], name: "index_diaries_on_weather_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -87,10 +62,6 @@ ActiveRecord::Schema[7.2].define(version: 2025_09_19_161521) do
 
   add_foreign_key "diaries", "users"
   add_foreign_key "diaries", "weathers"
-  add_foreign_key "diary_symptoms", "diaries"
-  add_foreign_key "diary_symptoms", "symptoms"
-  add_foreign_key "user_symptoms", "symptoms"
-  add_foreign_key "user_symptoms", "users"
   add_foreign_key "weather_predictions", "users"
   add_foreign_key "weathers", "users"
 end

@@ -7,7 +7,7 @@ class UserSessionsController < ApplicationController
     @user = login(params[:email], params[:password])
 
     if @user
-      redirect_to diaries_path, success: "ログインに成功しました"
+      redirect_to new_diary_path, success: "ログインに成功しました"
     else
       flash.now[:danger] = "ログインに失敗しました"
       render :new, status: :unprocessable_entity
