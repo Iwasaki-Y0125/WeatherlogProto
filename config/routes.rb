@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   get "intro/user_agreement", to: "intro#user_agreement"
 
   resources :users, only: %i[new create]
-  resources :diaries, only: [:index, :new, :create] do
+  resources :diaries, only: [ :index, :new, :create ] do
     collection do
       patch :skip
     end

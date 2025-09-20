@@ -11,5 +11,5 @@ class Diary < ApplicationRecord
 
   # バリデーション
   validates :symptom_level, inclusion: { in: 1..6 }
-  validates :oneline_diary, length: { maximum: 100}, allow_blank: true
+  validates :oneline_diary, length: { maximum: 100 }, allow_blank: true
 end
