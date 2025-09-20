@@ -57,7 +57,7 @@ group :test do
 end
 
 gem "tailwindcss-rails"
-gem "tailwindcss-ruby", "3.4.17"
+gem "tailwindcss-ruby", "4.1.13"
 
 # 認証機能
 gem "sorcery", "0.16.3"
