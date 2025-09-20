@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to login_path, notice: '登録が完了しました'
+      redirect_to login_path
     else
       render :new
     end
@@ -17,6 +17,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation, :postal_code, user_symptoms_attributes: [:symptom_id])
+    params.require(:user).permit(:email, :password, :password_confirmation, :postal_code, user_symptoms_attributes: [ :symptom_id ])
   end
 end
