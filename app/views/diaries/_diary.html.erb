@@ -1,0 +1,16 @@
+<div>
+  <% color = case diary.symptom_level
+    when "very_good" then "blue"
+    when "good"      then "green"
+    when "neutral"   then "yellow"
+    when "bad"       then "orange"
+    when "very_bad"  then "red"
+    else "gray"
+  end %>
+
+  <div class="w-12 h-12 mb-2 text-<%= color %>-500">
+    <%= render "mood_icons/#{diary.symptom_level}" %>
+  </div>
+
+  <%= diary.oneline_diary %>
+</div>
