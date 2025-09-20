@@ -1,4 +1,38 @@
-<div class="bg-neutral-400 relative w-full h-screen overflow-hidden" data-controller="agree-checkbox">
-  <h1>ログイン</h1>
-  <p>画面だよ</p>
+<div class="bg-neutral-300 relative w-full h-screen overflow-hidden">
+  <div class="px-8">
+    <h1 class="text-lg text-gray-700 font-serif font-medium my-8 ">ログイン</h1>
+    <%= form_with url: login_path do |f| %>
+      <!-- メールアドレス -->
+      <div>
+          <label class="block text-sm text-gray-700 font-serif my-3">
+            メールアドレス
+          </label>
+          <%= f.email_field :email,
+                            class: "w-full max-w-sm px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 text-gray-700",
+                            placeholder: "example@email.com" %>
+      </div>
+      <!-- パスワード -->
+      <div class="space-y-3">
+        <div>
+          <label class="block text-sm text-gray-700 font-serif my-3">
+            パスワード
+          </label>
+          <%= f.password_field :password,
+                              class: "w-full max-w-sm px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 text-gray-700",
+                              placeholder: "パスワードを入力" %>
+        </div>
+      </div>
+
+      <!-- 登録ボタン -->
+      <div class="text-center mt-5">
+        <%= f.submit "ログイン",
+                    class: "w-40 bg-gray-500 hover:bg-red-800 text-white py-3 px-4 rounded-md transition-colors duration-200 cursor-pointer" %>
+      </div>
+    <% end %>
+    <div class='text-center mt-10'>
+      <div class="decoration-solid decoration-0 underline underline-offset-4 break-words hover:text-red-700">
+        <%= link_to 'パスワードをお忘れの方はこちら', '#' %>
+      </div>
+    </div>
+  </div>
 </div>
