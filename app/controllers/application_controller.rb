@@ -6,6 +6,8 @@ class ApplicationController < ActionController::Base
   # セッションタイムアウトの設定
   before_action :check_session_timeout, :require_login
 
+  add_flash_types :success, :danger
+
   private
 
   # 認証機能をチェックするときはコメントアウトすること
