@@ -28,21 +28,21 @@ class User < ApplicationRecord
   end
 
   def fetch_coordinates_from_postal_code(postal_code)
-    require 'net/http'
-    require 'json'
+    require "net/http"
+    require "json"
 
     uri = URI("https://geoapi.heartrails.com/api/json?method=searchByPostal&postal=#{postal_code}")
 
     begin
       response = Net::HTTP.get_response(uri)
-      return nil unless response.code == '200'
+      return nil unless response.code == "200"
 
       data = JSON.parse(response.body)
-      if data['response'] && data['response']['location'] && data['response']['location'].any?
-        location = data['response']['location'].first
+      if data["response"] && data["response"]["location"] && data["response"]["location"].any?
+        location = data["response"]["location"].first
         {
-          latitude: location['y'].to_f,
-          longitude: location['x'].to_f
+          latitude: location["y"].to_f,
+          longitude: location["x"].to_f
         }
       else
         nil

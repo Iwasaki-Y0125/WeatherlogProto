@@ -1,4 +1,4 @@
-require 'httparty'
+require "httparty"
 
 class DiariesController < ApplicationController
   def index
@@ -52,12 +52,12 @@ class DiariesController < ApplicationController
         query: {
           latitude: lat,
           longitude: lon,
-          current: 'temperature_2m,weather_code,pressure_msl,relative_humidity_2m',
-          timezone: 'Asia/Tokyo'
+          current: "temperature_2m,weather_code,pressure_msl,relative_humidity_2m",
+          timezone: "Asia/Tokyo"
         },
         headers: {
-          'Accept' => 'application/json',
-          'Content-Type' => 'application/json; charset=utf-8'
+          "Accept" => "application/json",
+          "Content-Type" => "application/json; charset=utf-8"
         }
       })
 
@@ -66,15 +66,15 @@ class DiariesController < ApplicationController
         # 配列の場合は最初の要素を取得
         weather_data_source = data.is_a?(Array) ? data.first : data
 
-        if weather_data_source && weather_data_source['current']
-          current_data = weather_data_source['current']
+        if weather_data_source && weather_data_source["current"]
+          current_data = weather_data_source["current"]
 
           {
-            temperature: current_data['temperature_2m']&.to_f || 0.0,
-            weather_code: current_data['weather_code']&.to_i || 0,
-            pressure: current_data['pressure_msl']&.to_f || 0.0,
-            humidity: current_data['relative_humidity_2m']&.to_f || 0.0,
-            recorded_at: current_data['time']&.to_s || Time.current.to_s
+            temperature: current_data["temperature_2m"]&.to_f || 0.0,
+            weather_code: current_data["weather_code"]&.to_i || 0,
+            pressure: current_data["pressure_msl"]&.to_f || 0.0,
+            humidity: current_data["relative_humidity_2m"]&.to_f || 0.0,
+            recorded_at: current_data["time"]&.to_s || Time.current.to_s
           }
         else
           nil
