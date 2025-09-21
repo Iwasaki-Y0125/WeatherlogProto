@@ -1,5 +1,32 @@
-<div class="bg-neutral-300 relative w-full h-screen overflow-hidden">
-  <div class="px-8">
-    <h1 class="text-lg text-gray-700 font-serif font-medium my-8 ">ゆらぎ日記一覧</h1>
+<% content_for :scrollable, true %>
+
+<div class="relative w-full" data-controller="video-background intro">
+  <video
+    data-video-background-target="video"
+    id="background-video"
+    class="absolute top-0 left-0 w-full h-full object-cover z-0"
+    autoplay
+    muted
+    loop
+  >
+  <source src="<%= asset_path('background-video.mp4') %>" type="video/mp4">
+    お使いのブラウザは動画をサポートしていません。
+  </video>
+
+<div class="relative w-full min-h-full">
+  <div class="px-8 pb-8">
+
+    <h1 class="text-4xl text-gray-100 font-serif font-medium my-8 ">ゆらぎ日記一覧</h1>
+    <div class="mt-6 mb-8">
+<%= link_to '記録をつける', new_diary_path,
+  class: "inline-block w-40 text-center bg-gray-500 hover:bg-red-800 text-white py-3 px-4 rounded-md font-medium shadow transition-colors duration-200" %>
+    </div>
+
+    <% if @diaries.present? %>
+      <%= render @diaries %>
+      <% else %>
+        <div class="mb-3">日記がありません</div>
+    <% end %>
   </div>
+</div>
 </div>

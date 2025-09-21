@@ -14,12 +14,37 @@
   position: relative;
 }
 
+/* 一覧ページ専用のスクロール設定 */
+.smartphone-container.scrollable {
+  overflow-y: auto; /* 縦方向のスクロールを有効化 */
+}
+
+/* スクロールバーのカスタマイズ（オプション） */
+.smartphone-container.scrollable::-webkit-scrollbar {
+  width: 6px;
+}
+
+.smartphone-container.scrollable::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.smartphone-container.scrollable::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+.smartphone-container.scrollable::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+
 /* レスポンシブ対応 */
 @media (max-width: 640px) {
   .smartphone-container {
     height: 100vh;
     max-width: 100%;
-    position: relative; 
+    position: relative;
   }
 }
 

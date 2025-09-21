@@ -1,0 +1,68 @@
+<div class="bg-white rounded-xl border border-gray-200 p-5 mb-5 shadow-sm">
+
+  <!-- 記録時刻 -->
+  <div class="text-center mb-4">
+    <p class="text-sm text-gray-500 bg-gray-50 rounded-full px-3 py-1 inline-block">
+      <%= l Time.zone.parse(@weather_data[:recorded_at]), format: :long %>
+    </p>
+  </div>
+
+  <hr class="border-gray-200 mb-4">
+
+  <!-- 天気情報 -->
+  <% if @weather_data %>
+    <div class="mb-4">
+      <h3 class="text-lg font-bold text-gray-800 mb-3 text-center">🌤️ 天気情報</h3>
+      <div class="bg-blue-50 rounded-lg p-3">
+        <div class="grid grid-cols-2 gap-3 text-sm">
+          <div class="text-center">
+            <p class="text-gray-500">天気</p>
+            <p class="font-semibold text-gray-800"><%= weather_code_to_japanese(@weather_data[:weather_code]) %></p>
+          </div>
+          <div class="text-center">
+            <p class="text-gray-500">気温</p>
+            <p class="font-semibold text-gray-800"><%= @weather_data[:temperature].round(1) %>°C</p>
+          </div>
+          <div class="text-center">
+            <p class="text-gray-500">湿度</p>
+            <p class="font-semibold text-gray-800"><%= @weather_data[:humidity] %>%</p>
+          </div>
+          <div class="text-center">
+            <p class="text-gray-500">気圧</p>
+            <p class="font-semibold text-gray-800"><%= @weather_data[:pressure] %>hPa</p>
+          </div>
+        </div>
+      </div>
+      <small class="text-xs text-gray-400 mt-2 block text-center">
+        <a href="https://open-meteo.com/" class="hover:text-gray-600">Weather data by Open-Meteo.com</a>
+      </small>
+    </div>
+  <% end %>
+
+  <hr class="border-gray-200 mb-4">
+
+  <!-- 気分と一言日記 -->
+  <div>
+    <% color = case diary.symptom_level
+      when "very_good" then "blue"
+      when "good"      then "green"
+      when "neutral"   then "yellow"
+      when "bad"       then "orange"
+      when "very_bad"  then "red"
+      else "gray"
+    end %>
+
+    <div class="flex items-start space-x-4 bg-gray-50 rounded-lg p-4">
+      <div class="w-16 h-16 text-<%= color %>-500 flex-shrink-0">
+        <%= render "mood_icons/#{diary.symptom_level}" %>
+      </div>
+
+      <div class="flex-1">
+        <h4 class="text-sm font-medium text-gray-500 mb-1">今日の一言</h4>
+        <p class="text-gray-800 font-medium text-base leading-relaxed">
+          <%= diary.oneline_diary %>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

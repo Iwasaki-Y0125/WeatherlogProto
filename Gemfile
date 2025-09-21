@@ -64,3 +64,5 @@ gem "sorcery", "0.16.3"
 
 # i18n対応
 gem "rails-i18n", "~> 7.0.0"
+
+gem "httparty"

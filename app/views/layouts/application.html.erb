@@ -19,7 +19,7 @@
   </head>
   <!-- 本体表示 -->
   <body class="bg-gray-500 h-screen flex justify-center items-center">
-    <div class="smartphone-container">
+    <div class="smartphone-container <%= 'scrollable' if content_for?(:scrollable) %>">
       <%= render 'layouts/flash_messages' %>
       <%= yield %>
     </div>
