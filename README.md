@@ -1,24 +1,52 @@
-# README
+# 秋のお天気🍁ゆらぎログ
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+季節や天候の変化に伴う「心のゆらぎ」を見える化するアプリです。
+気象データと気分ログを組み合わせることで、セルフケアへの気づきにつなげます。
 
-Things you may want to cover:
+---
 
-* Ruby version
+## コンセプト
 
-* System dependencies
+- **目的**：天気や気温の変化に伴う気分の揺らぎを客観的に記録・把握できるようにする
+- **対象ユーザー**：気象変化で体調が崩れやすい人
+- **特徴**：
+  - 心とからだをやさしく記録できる心理サポート重視の設計
+  - 天気・気温・湿度・気圧と体調ログを照らし合わせて傾向を把握
+  - 日々のゆらぎを振り返ることで安心感やセルフケアのヒントにつなげる
 
-* Configuration
+---
 
-* Database creation
+## 主な機能
 
-* Database initialization
+- **天気指数表示**
+  - 当日と翌日の天気・気温・湿度・気圧を表示（Open-Meteo API 利用）
 
-* How to run the test suite
+- **ゆらぎ日記**
+  - 体調を 5 段階スタンプで記録
+  - 任意で一言日記を入力（100文字以内）
+  - 過去の投稿を日付ごとに気象データと一緒に一覧表示
 
-* Services (job queues, cache servers, search engines, etc.)
+---
 
-* Deployment instructions
+## 技術スタック
 
-* ...
+### バックエンド
+- Framework: Ruby on Rails
+- Database: PostgreSQL
+- API連携:
+  - Open-Meteo API（天気・気温・湿度・気圧）
+  - HeartRails Geo API（郵便番号から緯度・経度を取得）
+
+### フロントエンド
+- HTML / CSS / JavaScript（Stimulus）
+
+### 開発環境
+- Docker / docker-compose
+  - Rails サーバー + PostgreSQL をコンテナ化
+
+### デプロイ
+- バックエンド: Render
+- フロントエンド: GitHub Pages
+- CI/CD: GitHub Actions
+
+---
