@@ -1,6 +1,6 @@
 <div class="bg-neutral-300 relative w-full h-screen overflow-hidden">
   <div class="px-8">
-    <h1 class="text-4xl text-gray-700 font-serif font-medium mt-8">ゆらぎ記録</h1>
+    <h1 class="text-4xl text-gray-700 font-serif mt-8">ゆらぎ記録</h1>
 
     <div data-controller="mood-selector" class="max-w-2xl mx-auto p-6">
       <%= form_with model: @diary, local: true, class: "diary-mood-form" do |form| %>
@@ -50,12 +50,14 @@
         <!-- 保存ボタン -->
         <div class="mt-6 text-center">
           <%= form.submit "日記を保存",
-                class: "inline-block w-40 text-center bg-gray-500 hover:bg-red-800 text-white py-3 px-4 rounded-md font-medium shadow transition-colors duration-200" %>
+                class: "inline-block w-full text-center bg-gray-500 hover:bg-red-800 text-white py-3 px-4 rounded-md font-medium shadow transition-colors duration-200" %>
         </div>
       <% end %>
     </div>
+<div class="mt-6 text-center">
     <%= link_to '記録一覧を見る', diaries_path,  class: "inline-block w-40 text-center bg-gray-500 hover:bg-red-800 text-white py-3 px-4 rounded-md font-medium shadow transition-colors duration-200" %>
   </div>
+    </div>
 </div>
 
 <style>

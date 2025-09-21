@@ -8,7 +8,7 @@ module ApplicationHelper
   end
 
   def weather_code_to_japanese(code)
-    case code
+    case code = code.to_i
     when 0
       "☀️ 快晴"
     when 1

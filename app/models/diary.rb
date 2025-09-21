@@ -1,6 +1,6 @@
 class Diary < ApplicationRecord
   belongs_to :user
-  belongs_to :weather, optional: true # 天気データがない場合も考慮
+  belongs_to :weather, optional: true  # 天気情報がない場合もあるので optional
 
   # 症状レベルのenum
   enum symptom_level: {

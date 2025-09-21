@@ -2,8 +2,7 @@ require "httparty"
 
 class DiariesController < ApplicationController
   def index
-    @diaries = current_user.diaries.order(created_at: :desc)
-    @weather_data = get_weather_data
+    @diaries = current_user.diaries.includes(:weather).order(created_at: :desc)
   end
 
   def new
@@ -16,12 +15,13 @@ class DiariesController < ApplicationController
 
     if @diary.save
       if weather_data
-        current_user.weathers.create!(
+        weather = current_user.weathers.create!(
           temperature: weather_data[:temperature],
-          weather_code: weather_data[:weather_code],
+          weather_code: weather_data[:weather_code].to_s,
           pressure: weather_data[:pressure],
           humidity: weather_data[:humidity],
         )
+        @diary.update!(weather: weather)
       end
       redirect_to diaries_path, success: "日記を記録しました"
     else
