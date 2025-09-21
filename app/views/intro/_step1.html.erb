@@ -1,7 +1,7 @@
 <div class="flex items-center justify-center h-full">
   <div class="flex flex-col items-center gap-6 opacity-80">
   <!-- ロゴ部分 -->
-  <div class="size-72">
+  <div class="size-72 mt-4">
     <%= image_tag 'applogo.png' %>
   </div>
   <!-- アプリ説明部分 -->
@@ -38,7 +38,7 @@
   </div>
 
   <!-- ログイン部分 -->
-  <div class="flex flex-col items-center gap-4 bg-neutral-200 hover:bg-amber-600 rounded-full py-5 px-7">
+  <div class="flex flex-col items-center gap-4 bg-neutral-200 hover:bg-amber-600 rounded-full py-3 px-7">
     <div class="decoration-solid decoration-0 underline underline-offset-4 break-words">
       <%= link_to login_path, class: "text-sm text-center text-red-950 font-serif" do %>
       <span class="block">既にアカウントがある方</span>
