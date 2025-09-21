@@ -40,7 +40,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_09_19_161521) do
 
   create_table "weather_predictions", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.string "condition", null: false
+    t.string "main", null: false
     t.decimal "temperature", precision: 5, scale: 2
     t.decimal "humidity", precision: 5, scale: 2
     t.decimal "pressure", precision: 7, scale: 2
@@ -51,7 +51,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_09_19_161521) do
 
   create_table "weathers", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.string "condition", null: false
+    t.string "weather_code", null: false
     t.decimal "temperature", precision: 5, scale: 2
     t.decimal "humidity", precision: 5, scale: 2
     t.decimal "pressure", precision: 7, scale: 2

@@ -1,8 +1,9 @@
 <div class="bg-neutral-300 relative w-full h-screen overflow-hidden">
   <div class="px-8">
-
     <h1 class="text-lg text-gray-700 font-serif font-medium mt-8">ユーザー登録</h1>
-    <%= form_with model: @user, local: true, class: "space-y-6" do |f| %>
+    <%= form_with model: @user, local: true, class: "space-y-6",
+                  data: { controller: "postal-code" } do |f| %>
+
     <%= render 'layouts/error_messages', object: f.object %>
       <!-- 郵便番号 -->
       <div class="flex items-start gap-10">
@@ -22,10 +23,25 @@
             <%= f.text_field :postal_code,
                             class: "w-32 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 text-gray-700",
                             placeholder: "1234567",
-                            maxlength: "7" %>
+                            maxlength: "7",
+                            data: {
+                              postal_code_target: "postalCode",
+                              action: "input->postal-code#validatePostalCode"
+                            } %>
           </div>
+          <div data-postal-code-target="status"></div>
         </div>
       </div>
+
+      <!-- 隠しフィールド（デバッグ用・本番では不要） -->
+      <% if Rails.env.development? %>
+        <div class="text-xs text-gray-500">
+          <%= f.hidden_field :latitude %>
+          <%= f.hidden_field :longitude %>
+          <p>緯度: <span id="latitude-display"><%= @user.latitude %></span></p>
+          <p>経度: <span id="longitude-display"><%= @user.longitude %></span></p>
+        </div>
+      <% end %>
 
         <!-- メールアドレス -->
       <div>

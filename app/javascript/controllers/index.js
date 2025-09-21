@@ -19,6 +19,9 @@ application.register("intro", IntroController)
 import MoodSelectorController from "./mood_selector_controller"
 application.register("mood-selector", MoodSelectorController)
 
+import PostalCodeController from "./postal_code_controller"
+application.register("postal-code", PostalCodeController)
+
 import UserSymptomsController from "./user_symptoms_controller"
 application.register("user-symptoms", UserSymptomsController)
 
